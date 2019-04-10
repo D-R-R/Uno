@@ -136,7 +136,7 @@ namespace Windows.UI.Xaml
 		// This section is using the UnoViewGroup overrides for performance reasons
 		// where most of the work is performed on the java side.
 
-		protected override bool NativeHitCheck() 
+		protected override bool NativeHitCheck()
 			=> IsViewHit();
 
 		internal Windows.Foundation.Point GetPosition(Point position, global::Windows.UI.Xaml.UIElement relativeTo)
@@ -278,6 +278,28 @@ namespace Windows.UI.Xaml
 
 		public string ShowDescendants() => ViewExtensions.ShowDescendants(this);
 		public string ShowLocalVisualTree(int fromHeight) => ViewExtensions.ShowLocalVisualTree(this, fromHeight);
+
+		//Typed for easier inspection in debugger
+		public FrameworkElement[] FEChildren
+		{
+			get
+			{
+				return GetFEChildren().ToArray();
+
+				IEnumerable<FrameworkElement> GetFEChildren()
+				{
+					for (int i = 0; i < ChildCount; i++)
+					{
+						if (GetChildAt(i) is FrameworkElement feChild)
+						{
+							yield return feChild;
+						}
+					}
+				}
+			}
+		}
+
+		public FrameworkElement FEParent => Parent as FrameworkElement;
 #endif
 	}
 }

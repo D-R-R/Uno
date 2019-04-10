@@ -389,9 +389,9 @@ public abstract class UnoViewGroup
 		//		 (e.g. the growing circles in buttons when keeping pressed (RippleEffect)).
 
 		boolean superDispatchTouchEvent = false;
-		if (_childrenTransformations.size() == 0
-			|| e.getAction() == MotionEvent.ACTION_CANCEL) {
-			// We don't have any child which has s static transform, or the event is a "cancel" (cf. https://android.googlesource.com/platform/frameworks/base/+/0e71b4f19ba602c8c646744e690ab01c69808b42/core/java/android/view/ViewGroup.java#3013)
+		if (_childrenTransformations.size() == 0) {
+			// We don't have any child which has a static transform
+			// 
 			// propagate the event through the 'super' logic
 
 			superDispatchTouchEvent = super.dispatchTouchEvent(e);

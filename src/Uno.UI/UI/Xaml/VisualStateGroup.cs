@@ -171,7 +171,7 @@ namespace Windows.UI.Xaml
 		{
 			if (this.Log().IsEnabled(Microsoft.Extensions.Logging.LogLevel.Debug))
 			{
-				this.Log().DebugFormat("Go to state [{0}/{1}] on [{2}]", Name, state?.Name, element);
+				this.Log().DebugFormat("{4}-Go to state [{0}/{1}] on [{2}-{3}]", Name, state?.Name, element, element.GetHashCode(), GetHashCode());
 			}
 
 			var transition = FindTransition(originalState?.Name, state?.Name);
